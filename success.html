@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071322">
+  <title>เข้าสู่ระบบสำเร็จ · NEXUS VPN</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page-wrap success-wrap">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="NEXUS VPN หน้าหลัก">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 27 8v7.6c0 6.1-4.5 10.7-11 13-6.5-2.3-11-6.9-11-13V8l11-4.5Z" stroke="currentColor" stroke-width="1.8"/><path d="m11.5 16 3 3 6.5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>NEXUS<span class="brand-light">VPN</span></span>
+      </a>
+      <span class="secure-label"><span class="secure-dot"></span> การเชื่อมต่อที่ปลอดภัย</span>
+    </header>
+
+    <section class="success-card" aria-live="polite">
+      <div class="success-art" aria-hidden="true">
+        <span class="success-ring ring-back"></span><span class="success-ring ring-front"></span>
+        <span class="success-check"><svg viewBox="0 0 48 48" fill="none"><path d="m13 24.5 7.5 7.5L36 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span>
+      </div>
+      <div class="success-kicker"><span></span> AUTHENTICATION COMPLETE</div>
+      <h1>เข้าสู่ระบบสำเร็จ</h1>
+      <p class="success-copy">ยินดีต้อนรับสู่ NEXUS VPN<br>คุณสามารถเริ่มต้นการเชื่อมต่อที่ปลอดภัยได้แล้ว</p>
+      <div class="session-detail">
+        <span class="session-icon" aria-hidden="true">✓</span>
+        <span><small>เข้าสู่ระบบด้วย</small><strong id="login-method">—</strong></span>
+        <span class="session-status"><i></i> สำเร็จ</span>
+      </div>
+      <button class="primary-button logout-button" id="logout-button" type="button">ออกจากระบบ <span aria-hidden="true">↗</span></button>
+      <p class="success-footnote">เซสชันนี้เป็นการจำลองสำหรับเว็บเดโม</p>
+    </section>
+    <footer class="page-footer"><span>© 2026 NEXUS VPN</span><span><i></i> PRIVATE BY DESIGN</span></footer>
+  </main>
+  <script>
+    (() => {
+      const raw = localStorage.getItem('nexus-vpn-demo-session');
+      if (!raw) {
+        window.location.replace('./index.html');
+        return;
+      }
+      try {
+        const session = JSON.parse(raw);
+        document.getElementById('login-method').textContent = session.email
+          ? `${session.method} · ${session.email}`
+          : session.method;
+      } catch {
+        localStorage.removeItem('nexus-vpn-demo-session');
+        window.location.replace('./index.html');
+      }
+      document.getElementById('logout-button').addEventListener('click', () => {
+        localStorage.removeItem('nexus-vpn-demo-session');
+        window.location.href = './index.html';
+      });
+    })();
+  </script>
+</body>
+</html>
