@@ -40,6 +40,7 @@ python -m http.server 8000
 
 ```text
 .
+├── .gitignore
 ├── app.js
 ├── index.html
 ├── styles.css
